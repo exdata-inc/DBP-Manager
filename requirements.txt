@@ -4,7 +4,7 @@ attrs==23.1.0
 autobahn==23.6.2
 Automat==22.10.0
 boto3==1.36.6
-certifi==2023.7.22
+certifi==2024.7.4
 cffi==1.16.0
 channels==4.0.0
 charset-normalizer==3.3.1
