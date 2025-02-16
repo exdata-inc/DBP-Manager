@@ -1,0 +1,89 @@
+version: '3'
+services:
+  db:
+    restart: always
+    image: mysql:8
+    container_name: dbp-rwdb-mysql
+    env_file:
+      .env
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 16k
+  server:
+    restart: always
+    build:
+      context: .
+    container_name: dbp-rwdb-django
+    env_file:
+      .env
+    working_dir: '/root/scripts/'
+    command: './run.sh'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    tty: true
+    volumes:
+      - ./server/app/migrations:/root/scripts/server/app/migrations
+      - ./data_store:/root/scripts/data_store
+      # - /your_mv_dir:/your_mv_dir:rw #write your mount volume directory to move
+    ports:
+      # Format is HostPort:ContainerPort
+      - 8001:8000
+    depends_on:
+      db:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 256k
+  client:
+    restart: always
+    build:
+      context: ./client
+    image: bun:20
+    container_name: dbp-rwdb-client-vite
+    env_file:
+      ./client/.env
+    command: './run.sh'
+    tty: true
+    volumes:
+      - ./client/:/root/rwdb-client/
+    ports:
+      # Format is HostPort:ContainerPort
+      - 3002:5173
+    depends_on:
+      server:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 16k
+    working_dir: /root/rwdb-client/
+# for minio
+#   minio:
+#     image: minio/minio:latest
+#     ports:
+#       - 9000:9000
+#       - 9001:9001
+#     environment:
+#       MINIO_ROOT_USER: minio
+#       MINIO_ROOT_PASSWORD: dev-password  
+#     volumes:
+#       - data:/export
+#       - config:/root/.minio
+#     command: server /export --console-address ":9001"
+# volumes:
+#   data:
+#   config:

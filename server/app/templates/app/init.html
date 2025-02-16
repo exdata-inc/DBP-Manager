@@ -1,0 +1,153 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+    <div class="row my-4">
+        <div class="col-md-8">
+            {% for RW_data in pages %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <!--
+                    <h2 class="card-title"></h2>
+                    -->
+                    <p class="card-text">ファイル：{{ RW_data.file }}</p>
+                    <p class="card-text">取得場所：{{ RW_data.where }}</p>
+                    <p class="card-text">収集者：{{ RW_data.who }}</p>
+                    <p class="card-text">取得理由：{{ RW_data.why }}</p>
+                    <p class="card-text">取得方法：{{ RW_data.how }}</p>
+                    <p class="card-text">取得日時：{{ RW_data.when }}</p>
+                    <p class="card-text">データの形：{{ RW_data.what }}</p>
+                    <div class = 'd-grid gap-2 d-md-block'>
+                        <a class="btn btn-warning" href="{% url 'DB_detail' RW_data.id %}?page={{ pages.number }}">詳細</a>
+                        <a href="{% url 'RW_adminDB_download' RW_data.id %}" class="btn btn-warning">ダウンロード</a>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    登録日時：{{ RW_data.created|date:"Y年m月d日 H時i分" }}　登録者：{{ RW_data.author }}
+                </div>
+                <!--
+                <a href="" class="stretched-link"></a>
+                -->
+            </div>
+            {% endfor %}
+
+            {% if pages.has_other_pages %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if pages.has_previous %}
+                        <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.previous_page_number }}"><<</a></li>
+                    {% else %}
+                        <li class="disabled"><div class="page-link text-secondary d-inline-block disabled" href="#"><<</div></li>
+                    {% endif %}
+        
+                    {% if pages.has_previous %}
+                        {% if pages.previous_page_number != 1 %}
+                            <li><a class="page-link text-primary d-inline-block" href="?page=1">1</a></li>
+                            <li>…</li>
+                        {% endif %}
+                        <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.previous_page_number }}">{{ pages.previous_page_number }}</a></li>
+                    {% endif %}
+                    <li class="disabled"><div class="page-link text-secondary d-inline-block disabled" href="#">{{ pages.number }}</div></li>
+                    {% if pages.has_next %}
+                        <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.next_page_number }}">{{ pages.next_page_number }}</a></li>
+                        {% if pages.next_page_number != pages.paginator.num_pages %}
+                            <li>…</li>
+                            <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.paginator.num_pages }}">{{ pages.paginator.num_pages }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                    {% if pages.has_next %}
+                        <li><a class="page-link text-primary d-inline-block" href="?page={{ pages.next_page_number }}">>></a></li>
+                    {% else %}
+                        <li class="disabled"><div class="page-link text-secondary d-inline-block disabled" href="#">>></div></li>
+                    {% endif %}
+                </ul>
+            </nav>
+          {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <h5 class="card-header">header</h5>
+                <div class="card-body">
+                    <p>step1</p>
+                    <p class="mb-0">
+                        text
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+
+    const data_django = JSON.parse('{{ data_java|safe }}');
+
+
+    for(let i=data_django.RW_data_min_id; i<=data_django.RW_data_max_id; i++){
+        $("#download_file_"+String(i)).click( function(){
+            const a = document.createElement( 'a' );
+            console.log("OK")
+            // ↓ hrefにダウンロード用の画像URLを挿入
+            //a.href = window.URL.createObjectURL( new Blob( [ajax.response] ) );
+            a.href = data_django.RW_datas_fileurl[i];
+            console.log("OK")
+            // ↓ ダウンロード時の画像ファイル名を挿入
+            a.download = data_django.RW_datas_filename[i];
+            console.log("OK")
+            // ↓ ダウンロード
+            a.click();
+            console.log("OK")
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+            $.ajax({
+                "url": "{% url 'init' %}",
+                "type": "POST",
+                "data": {
+                    "RW_data_index": i,
+                },
+                "datatype": "json",
+                success : function(data) {
+                    //alert("success");
+                    location.href = data.nexturl;
+                },
+                error : function(data) {
+                    alert("error");
+                }
+            });
+        })
+    }
+
+</script>
+-->
+{% endblock %}

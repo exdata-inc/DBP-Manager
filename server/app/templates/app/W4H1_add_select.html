@@ -1,0 +1,26 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div class="my-4">
+    <h2>データ詳細の追加</h2>
+    <p>追加するデータ詳細を選択してください</p>
+</div>
+
+<ul>
+    <li>データの取得場所について</li>
+    <a href="../add?select=where" class="btn btn-primary">取得場所</a>
+    <li>データの収集者について</li>
+    <a href="../add?select=who" class="btn btn-primary">収集者</a>
+    <li>データの形について</li>
+    <a href="../add?select=what" class="btn btn-primary">形</a>
+    <li>データの取得理由について</li>
+    <a href="../add?select=why" class="btn btn-primary">取得理由</a>
+    <li>データの取得方法について</li>
+    <a href="../add?select=how" class="btn btn-primary">取得方法</a>
+</ul>
+
+<p><a href="{% url 'init' %}">戻る</a></p>
+
+
+{% endblock %}

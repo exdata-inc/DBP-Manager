@@ -1,0 +1,1 @@
+/usr/bin/tmux new-session -d -c /home/ubuntu/NICT-DBP/rwdb/client -n nict-dbp-rwdb-client -s daemons '/home/ubuntu/.nodenv/shims/npm run dev-srv' || /usr/bin/tmux new-window -d -c /home/ubuntu/NICT-DBP/rwdb/client -n nict-dbp-rwdb-client -t daemons '/home/ubuntu/.nodenv/shims/npm run dev-srv'

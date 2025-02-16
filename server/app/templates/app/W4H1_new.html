@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div class="my-4">
+    <h2>データ詳細の追加</h2>
+    <p>データ詳細を追加します</p>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+        <li>データの取得場所について</li>
+        {{ Where_form.as_p }}
+        <li>データの収集者について</li>
+        {{ Who_form.as_p }}
+        <li>データの形について</li>
+        {{ What_form.as_p }}
+        <li>データの取得理由について</li>
+        {{ Why_form.as_p }}
+        <li>データの取得方法について</li>
+        {{ How_form.as_p }}
+    </ul>
+
+    <button class="btn btn-warning" type="submit">追加する</button>
+</form>
+<br>
+<p><a href="{% url 'RW_adminDB_new' %}">戻る</a></p>
+
+
+{% endblock %}

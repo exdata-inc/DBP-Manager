@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <!-- Fonts to support Material Design -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+    />
+    <style>
+      .resizable-drawer > div {
+        width: 100% !important;
+        overflow-x: hidden;
+        border-right: 0px !important;
+      }
+      .dragger, .dragger-active {
+        height: 100vh;
+        display: flex;
+        pointer-events: auto;
+        cursor: col-resize !important;
+        z-index: 0;
+        position: relative;
+      }
+      .dragger:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        transition: 0.5s;
+        background: linear-gradient(to right, white, #F5F5F5);
+      }
+      .dragger-active:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        transition: 0.5s;
+        background: linear-gradient(to right, white, #87ceeb);
+      }
+      .dragger:after, .dragger-active:after {
+          content: "";
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          z-index: -2;
+          left: 0;
+          transition: 0.5s;
+          background: linear-gradient(to right, white, #87ceeb);
+      }
+      .draggger:hover:before {
+        opacity: 0;
+      }
+    </style>
+    <title>実世界データ醸造基盤</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

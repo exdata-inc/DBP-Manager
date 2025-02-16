@@ -1,0 +1,24 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div class="my-4">
+    <h2>データの追加</h2>
+    <p>実世界データ管理DBにデータを追加します<br>
+        以下のデータ詳細を入力してください</p>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ RW_form.as_ul }}
+    
+    <div class="d-grid gap-2 d-md-block">
+        <a href="{% url 'W4H1_new' %}" class="btn btn-primary">新しいデータ詳細を追加する</a>
+        <button class="btn btn-warning" type="submit">データを追加する</button>
+    </div>
+</form>
+<br>
+<p><a href="{% url 'init' %}">戻る</a></p>
+
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{
+  "app": {
+    "title": "RWDBP Manager",
+    "menu": {
+      "dashboard": "Dashboard",
+      "main": "Real World Dataset",
+      "brewing": "Data Brewing",
+      "metadata": "Metadata",
+      "log": "Logs",
+      "tools": "Tools",
+      "profile": "Profile",
+      "visualize": "Visualize"
+    },
+    "status": {
+      "authenticating": "Authenticating...",
+      "initializing": "Initializing..."
+    }
+  },
+  "login": {
+    "login": "Login",
+    "password": "Password"
+  },
+  "profile": {
+    "username": "Username",
+    "email": "Email",
+    "sub": "Sub",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "affiliation": "Affiliation",
+    "position": "Position",
+    "zip": "ZIP",
+    "city": "City"
+  },
+  "path": {
+    "where": "WHERE",
+    "who": "WHO",
+    "what": "WHAT",
+    "why": "WHY",
+    "how": "HOW",
+    "history": "History",
+    "dataset": "RealWorldDataset",
+    "brewer": "",
+    "brewer_input": "",
+    "brewer_output": "",
+    "brewer_argument": "",
+    "collection_info": "",
+    "storing_info": "",
+    "structure_info": "",
+    "register_demands": "",
+    "register_supplies": "",
+    "collection_demands": "",
+    "collection_supplies": "",
+    "collection_status": "",
+    "brewing_demands": "",
+    "brewing_supplies": "",
+    "periodic_brewing_configs": "",
+    "read_demands": "",
+    "read_supplies": "",
+    "write_demands": "",
+    "write_supplies": "",
+    "move_demands": "",
+    "move_supplies": "",
+    "periodic_move_configs": "",
+    "remove_demands": "",
+    "remove_supplies": "",
+    "periodic_remove_configs": ""
+  },
+  "pkeys": {
+    "schema": {
+      "name": "Name",
+      "description": "Description",
+      "dateCreated": "Created Date",
+      "contentLocation": "Content Location",
+      "author": "Author",
+      "distribution": "Distribution"
+    },
+    "dbp": {
+      "structureInfo": "Structure Info",
+      "collectionInfo": "Collection Info"
+    }
+  },
+  "hvis": {
+    "datepick": "Date Picker",
+    "dataset_not_selected": "Dataset NOT selected"
+  },
+  "errorText": {
+    "DATA_EMPTY": "Cannot save empty data",
+    "ID_MISSING": "Cannot save data without @id",
+    "TYPE_MISSING": "Cannot save data without @type"
+  }
+}

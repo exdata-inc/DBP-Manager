@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<div class="my-4">
+    <h2>データ詳細の追加</h2>
+    {% if messages %}
+	<ul class="messages_ul">
+		{% for message in messages %}
+            {% if forloop.last %}
+			    <p class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</p>
+            {% endif %}
+		{% endfor %}
+	</ul>
+    {% endif %}
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+        <li>{{ select_sentence }}</li>
+        {{ select_form.as_p }}
+    </ul>
+
+    <button class="btn btn-warning" type="submit">追加する</button>
+</form>
+<br>
+<p><a href="{% url 'W4H1_add_select' %}">戻る</a></p>
+
+
+{% endblock %}

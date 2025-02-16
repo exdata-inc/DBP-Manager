@@ -1,0 +1,52 @@
+{
+  "name": "rwdb-vite-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "^2.2.1",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@monaco-editor/react": "^4.6.0",
+    "@mui/icons-material": "latest",
+    "@mui/lab": "^5.0.0-alpha.145",
+    "@mui/material": "latest",
+    "@mui/x-data-grid": "^6.16.1",
+    "@mui/x-date-pickers": "^6.18.0",
+    "@mui/x-tree-view": "^6.17.0",
+    "@reduxjs/toolkit": "^1.9.7",
+    "axios": "^1.6.0",
+    "d3": "^7.8.5",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
+    "dayjs": "^1.11.10",
+    "harmoware-vis": "git+https://github.com/nagata-yoshiteru/harmoware-vis.git#v1.8.27a",
+    "i18next": "^23.5.1",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.6",
+    "react-i18next": "^13.2.2",
+    "react-json-view-lite": "^1.1.0",
+    "react-router-dom": "^6.16.0",
+    "react-table": "^7.8.0",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.2",
+    "@types/geojson": "^7946.0.12",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/react-table": "^7.7.17",
+    "@types/validator": "^13.11.5",
+    "@vitejs/plugin-react": "latest",
+    "sass": "^1.69.3",
+    "typescript": "latest",
+    "vite": "^5.0.7"
+  }
+}
