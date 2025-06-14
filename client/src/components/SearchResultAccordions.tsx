@@ -14,9 +14,38 @@ import theme from '../theme';
 
 const path_length = C.ALL_PATHS.length;
 
-function getHighlightedText(text: string, target: string) {
-  const respArray = (text.replaceAll(target, C.HIGHLIGHTER_SAND)).split(C.HIGHLIGHTER_SPLITTER);
-  return respArray.map((v) => v === C.HIGHLIGHTER_REPLACER ? <b style={{ backgroundColor: 'yellow' }}>{target}</b> : v);
+function getHighlightedText(text: string, target: string, ignoreCase: boolean= true): (string | JSX.Element)[] {
+  const regex = new RegExp(target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), ignoreCase ? 'gi' : 'g');
+
+  const result: (string | JSX.Element)[] = [];
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(regex)) {
+    if (match.index === undefined) continue;
+    const start = match.index;
+    const end = start + match[0].length;
+
+    // 通常文字列
+    if (lastIndex < start) {
+      result.push(text.slice(lastIndex, start));
+    }
+
+    // マッチした原文をハイライト
+    result.push(
+      <b key={start} style={{ backgroundColor: 'yellow' }}>
+        {match[0]}
+      </b>
+    );
+
+    lastIndex = end;
+  }
+
+  // 残りのテキスト
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex));
+  }
+
+  return result;
 }
 
 
