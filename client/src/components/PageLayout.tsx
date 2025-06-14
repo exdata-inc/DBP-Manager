@@ -188,6 +188,7 @@ const PageLayout: React.FC<PageLayoutProps> = (props: PageLayoutProps) => {
   // ------------------------------------------------------ //
   const [isSearching, setIsSearching] = React.useState(true);
   const [searchQuery, setSearchQuery] = React.useState("");
+  const [serchQueryComposing, setSearchQueryComposing] = React.useState(false);
   const [searchParams, setSearchParams] = useSearchParams({ q: "" });
   const [searchDialogOpen, setSearchDialogOpen] = React.useState(false);
   const [searchResultRows, setSearchResultRows] = React.useState<SearchAccordionType[]>([]);
@@ -210,7 +211,7 @@ const PageLayout: React.FC<PageLayoutProps> = (props: PageLayoutProps) => {
   };
 
   const handleSearchInputKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !serchQueryComposing) {
       handleSearchAction();
     }
   }
@@ -301,6 +302,8 @@ const PageLayout: React.FC<PageLayoutProps> = (props: PageLayoutProps) => {
                 value={searchQuery}
                 onChange={handleSearhInputChange}
                 onKeyDown={handleSearchInputKeyDown}
+                onCompositionStart={() => setSearchQueryComposing(true)}
+                onCompositionEnd={() => setSearchQueryComposing(false)}
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
