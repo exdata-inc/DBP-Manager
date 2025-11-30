@@ -160,7 +160,7 @@ export default function Dataset() {
         },
         "dbp:structureInfo": {
           [C.AT_ID]: tableData.urlPrefix + "/api/v0/structure_info/*/?format=json",
-          [C.AT_TYPE]: "dbp:RealWorldDataStructureInfo",
+          [C.AT_TYPE]: "dbp:RealWorldDataFieldProfile",
         },
         "schema:distribution": [
           {

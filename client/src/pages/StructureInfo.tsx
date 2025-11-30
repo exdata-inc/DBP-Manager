@@ -149,7 +149,7 @@ export default function StructureInfo() {
       },
       body: JSON.stringify({
         [C.AT_ID]: "",
-        [C.AT_TYPE]: "dbp:RealWorldDataStructureInfo",
+        [C.AT_TYPE]: "dbp:RealWorldDataFieldProfile",
         [C.AT_CONTEXT]: {
           "dbp": "https://exdata.co.jp/dbp/schema/",
           "schema": "https://schema.org/"
@@ -287,7 +287,7 @@ export default function StructureInfo() {
           setDense={setDense}
           modal_open={() => setGeneratorModalOpen(true)}
           helpImgSrc={`img/${PATH_NAME}.svg`}
-          helpType={'dbp:RealWorldDataStructureInfo'}
+          helpType={'dbp:RealWorldDataFieldProfile'}
         />
         <TableContainer>
           <Table

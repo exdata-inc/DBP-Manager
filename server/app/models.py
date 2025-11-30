@@ -147,7 +147,7 @@ class RealWorldDataCollectionInfo(JsonModel):
 # 保存先情報
 class RealWorldDataStoringInfo(JsonModel):
     pass
-    
+
 # 構造情報
 class RealWorldDataStructureInfo(JsonModel):
     pass
