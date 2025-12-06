@@ -82,7 +82,7 @@ const headCells: readonly HeadCell[] = [
     label: '入力のキー',
   },
   {
-    id: C.DBP_DATASET,
+    id: C.SC_DATASET,
     numeric: false,
     disablePadding: false,
     label: '入力データセット（具体的な需要に紐づくエントリのみ）',
@@ -169,7 +169,7 @@ export default function BrewerInput() {
           [C.AT_ID]: "schema:Float",
         },
         "dbp:inputCharacteristic": 1,   // QUANTITATIVE
-        "dbp:dataset": {
+        "schema:dataset": {
           [C.AT_ID]: tableData.urlPrefix + "/api/v0/dataset/*/?format=json",
         },
         "schema:dateCreated": createCurrentDateString(),
@@ -278,7 +278,7 @@ export default function BrewerInput() {
                     </TableCell>
                     <TableCell><NonStyledLink to={`/${PATH_NAME}/` + encodeIdUrl(row[C.AT_ID] as string)}>{row[C.AT_ID].replace(tableData.urlPrefix, '').replace(C.API_ROOT_PATH, '')}</NonStyledLink></TableCell>
                     <TableCell>{row[C.DBP_KEY]}</TableCell>
-                    <TableCell>{getLDLink(row[C.DBP_DATASET], tableData.urlPrefix)}</TableCell>
+                    <TableCell>{getLDLink(row[C.SC_DATASET], tableData.urlPrefix)}</TableCell>
                     <TableCell>{getLDLink(row[C.DBP_INPUT_TYPE], tableData.urlPrefix)}</TableCell>
                     <TableCell>{row[C.DBP_INPUT_CHARACTERISTIC]}</TableCell>
                     <TableCell><CopyToClipboard textToCopy={import.meta.env.VITE_RWDB_URL_PREFIX + row[C.AT_ID].replace(tableData.urlPrefix, '')} /></TableCell>

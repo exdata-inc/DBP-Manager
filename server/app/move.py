@@ -54,7 +54,7 @@ def add_move_demand(dataset_instance, filtered_distributions, end_storage_url):
     for item in filtered_distributions:
         move_to_url = end_storage_url              # dbp:moveTo
         move_from_url = item.get("@id")             # dbp:moveFrom
-        current_dataset_url = dataset_url           # dbp:dataset
+        current_dataset_url = dataset_url           # schema:dataset
         
         if is_duplicate_demand(
             existing_demands=existing_demands,
@@ -75,7 +75,7 @@ def add_move_demand(dataset_instance, filtered_distributions, end_storage_url):
                 "@id": move_to_url,
                 "@type": "dbp:RealWorldDataStoringInfo"
             },
-            "dbp:dataset": {
+            "schema:dataset": {
                 "@id": current_dataset_url,
                 "@type": "dbp:RealWorldDataset"
             },
@@ -97,7 +97,7 @@ def add_move_demand(dataset_instance, filtered_distributions, end_storage_url):
 def is_duplicate_demand(existing_demands, dataset_url, move_from_url, move_to_url):
     for demand in existing_demands:
         d_fields = demand.fields or {}
-        d_dataset_id = d_fields.get("dbp:dataset", {}).get("@id")
+        d_dataset_id = d_fields.get("schema:dataset", {}).get("@id")
         d_move_from_id = d_fields.get("dbp:moveFrom", {}).get("@id")
         d_move_to_id   = d_fields.get("dbp:moveTo", {}).get("@id")
         if (d_dataset_id == dataset_url 

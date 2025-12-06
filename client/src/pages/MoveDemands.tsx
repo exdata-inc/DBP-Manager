@@ -76,7 +76,7 @@ const headCells: readonly HeadCell[] = [
     label: 'ID (JSON-LD URL)',
   },
   {
-    id: 'dbp:dataset',
+    id: 'schema:dataset',
     numeric: false,
     disablePadding: false,
     label: '対象の実世界データセット',
@@ -171,7 +171,7 @@ export default function MoveDemand() {
         },
         "schema:name": `新規${t(`path.${PATH_NAME}`)}`,
         "schema:dateCreated": createCurrentDateString(),
-        "dbp:dataset": {            // 移動する RealWorldDataset
+        "schema:dataset": {            // 移動する RealWorldDataset
           [C.AT_ID]: tableData.urlPrefix + "/api/v0/dataset/*/?format=json",
           [C.AT_TYPE]: "dbp:RealWorldDataset",
         },
@@ -289,7 +289,7 @@ export default function MoveDemand() {
                       <NonStyledLink to={`/${PATH_NAME}/`+encodeIdUrl(row[C.AT_ID] as string)}>{row[C.SC_NAME] as string}</NonStyledLink>
                     </TableCell>
                     <TableCell><NonStyledLink to={`/${PATH_NAME}/`+encodeIdUrl(row[C.AT_ID] as string)}>{row[C.AT_ID].replace(tableData.urlPrefix, '').replace(C.API_ROOT_PATH, '')}</NonStyledLink></TableCell>
-                    <TableCell>{getLDLink(row['dbp:dataset'], tableData.urlPrefix)}</TableCell>
+                    <TableCell>{getLDLink(row['schema:dataset'], tableData.urlPrefix)}</TableCell>
                     <TableCell>{getLDLink(row['dbp:moveFrom'], tableData.urlPrefix)}</TableCell>
                     <TableCell>{getLDLink(row['dbp:moveTo'], tableData.urlPrefix)}</TableCell>
                     <TableCell>{row['dbp:timePeriodStart']}</TableCell>
