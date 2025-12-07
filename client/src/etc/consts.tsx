@@ -110,7 +110,6 @@ export const DBP_COLLECTION_INFO:            string = "dbp:collectionInfo";
 export const DBP_KEY:                        string = "dbp:key";
 export const DBP_INPUT_TYPE:                 string = "dbp:inputType";
 export const DBP_INPUT_CHARACTERISTIC:       string = "dbp:inputCharacteristic";
-export const DBP_DATASET:                    string = "dbp:dataset";
 export const DBP_OUTPUT_TYPE:                string = "dbp:outputType";
 export const DBP_OUTPUT_CHARACTERISTIC:      string = "dbp:outputCharacteristic";
 export const DBP_ARGUMENT_TYPE:              string = "dbp:argumentType";

@@ -138,7 +138,7 @@ export default function MoveSupply() {
         },
         "schema:name": `新規${t(`path.${PATH_NAME}`)}`,
         "schema:dateCreated": createCurrentDateString(),
-        "dbp:dataset": {            // 移動する RealWorldDataset
+        "schema:dataset": {            // 移動する RealWorldDataset
           [C.AT_ID]: tableData.urlPrefix + "/api/v0/dataset/*/?format=json",
           [C.AT_TYPE]: "dbp:RealWorldDataset",
         },

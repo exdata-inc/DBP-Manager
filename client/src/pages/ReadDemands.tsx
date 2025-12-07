@@ -157,7 +157,7 @@ export default function ReadDemand() {
           "dbp": "https://exdata.co.jp/dbp/schema/",
           "schema": "https://schema.org/"
         },
-        "dbp:dataset": {            // 読み込む RealWorldDataset
+        "schema:dataset": {            // 読み込む RealWorldDataset
           [C.AT_ID]: tableData.urlPrefix + "/api/v0/dataset/*/?format=json",
           [C.AT_TYPE]: "dbp:RealWorldDataset",
         },

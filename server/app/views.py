@@ -860,8 +860,8 @@ class RealWorldDataReadDemandsViewSet(RWDBViewSet):
         serializer.data[JSON_FIELDS]['@id'] = self.id_prefix + str(serializer.data['id']) + "/?format=json"
         
         # 登録されたReadDemandからMoveDemandとPeriodicMoveConfigを追加する
-        if "dbp:dataset" in request.data and "@id" in request.data["dbp:dataset"] and "dbp:timePeriodEnd" in request.data and "dbp:timePeriodStart"  in request.data:
-            dataset_j = requests.get(request.data["dbp:dataset"]["@id"]).json()
+        if "schema:dataset" in request.data and "@id" in request.data["schema:dataset"] and "dbp:timePeriodEnd" in request.data and "dbp:timePeriodStart"  in request.data:
+            dataset_j = requests.get(request.data["schema:dataset"]["@id"]).json()
             end_match = re.fullmatch(r'([+-]?)([0-9]+)([dHMS]?)', request.data["dbp:timePeriodEnd"])
             start_match = re.fullmatch(r'([+-]?)([0-9]+)([dHMS])', request.data["dbp:timePeriodStart"])
             if end_match and start_match:
@@ -910,7 +910,7 @@ class RealWorldDataReadDemandsViewSet(RWDBViewSet):
                                     "@id": movefrom["@id"],
                                     "@type": "dbp:RealWorldDataStoringInfo"
                                 },
-                                "dbp:dataset": {
+                                "schema:dataset": {
                                     "@id": dataset_j["@id"],
                                     "@type": "dbp:RealWorldDataset"
                                 },
